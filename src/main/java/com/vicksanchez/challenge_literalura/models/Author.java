@@ -29,8 +29,11 @@ public class Author {
         this.deathDate = authorData.deathDate();
     }
 
-    public List<Book> getBooks() {
-        return books;
+    public StringBuilder getBooks() {
+        StringBuilder booksStr = new StringBuilder();
+        booksStr.append("Libros: ");
+        books.forEach(book -> booksStr.append(book.getTitle()));
+        return booksStr;
     }
 
     public int getDeathDate() {
@@ -63,5 +66,15 @@ public class Author {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return  "****************** AUTOR *********************"+"\n" +
+                "Nombre: '" + this.getName() + '\'' + "\n" +
+                "Año de Nacimiento: " + this.getBirthDate() + "\n" +
+                "Año de Muerte: " + this.getDeathDate() + "\n" +
+                this.getBooks() + "\n" +
+                "*********************************************"+"\n" ;
     }
 }

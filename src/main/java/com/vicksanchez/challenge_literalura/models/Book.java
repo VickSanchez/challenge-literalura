@@ -67,4 +67,14 @@ public class Book {
     public void setDownloads(int downloads) {
         this.downloads = downloads;
     }
+
+    @Override
+    public String toString() {
+        return  "****************** LIBRO *********************"+"\n" +
+                "Titulo: '" + this.getTitle() + '\'' + "\n" +
+                "Autor: " + this.getAuthor().getName() + "\n" +
+                "Idioma: " + this.getLanguage() + "\n" +
+                "Numero de Descargas: " + this.getDownloads() +"\n"+
+                "*********************************************"+"\n" ;
+    }
 }

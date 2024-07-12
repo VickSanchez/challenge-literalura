@@ -89,27 +89,6 @@ public class Main {
 
     }
 
-
-    private void showBookInfo(Book book){
-
-        var data =  "****************** LIBRO *********************"+"\n" +
-                "Titulo: '" + book.getTitle() + '\'' + "\n" +
-                "Autor: " + book.getAuthor().getName() + "\n" +
-                "Idioma: " + book.getLanguage() + "\n" +
-                "Numero de Descargas: " + book.getDownloads() +"\n"+
-                "*********************************************"+"\n" ;
-        System.out.println(data);
-    }
-
-    private void showAuthorInfo(Author author) {
-        var data =  "****************** AUTOR *********************"+"\n" +
-                "Nombre: '" + author.getName() + '\'' + "\n" +
-                "Año de Nacimiento: " + author.getBirthDate() + "\n" +
-                "Año de Muerte: " + author.getDeathDate() + "\n" +
-                "*********************************************"+"\n" ;
-        System.out.println(data);
-    }
-
     private Boolean verifyExistingAuthor(Author author) {
         Optional<Author> existingAuthor = authorRepository.findByName(author.getName());
         return existingAuthor.isPresent();
@@ -141,7 +120,7 @@ public class Main {
             if (!existingBook){
                 booksRepository.save(bookSave);
             }
-            showBookInfo(bookSave);
+            System.out.println(bookSave);;
         }else {
             System.out.println("Libro No Encontrado");
         }
@@ -150,7 +129,7 @@ public class Main {
     private void findBooksInDB() {
         List<Book> books = booksRepository.findAll();
         if (!books.isEmpty()){
-            books.forEach(book -> showBookInfo(book));
+            books.forEach(System.out::println);
         } else {
             System.out.println("No Hay Libros Registrados");
         }
@@ -159,7 +138,7 @@ public class Main {
     private void findAuthorsInDB() {
         List<Author> authors = authorRepository.findAll();
         if (!authors.isEmpty()){
-            authors.forEach(author -> showAuthorInfo(author));
+            authors.forEach(System.out::println);
         }else {
             System.out.println("No Hay Autores Registrados");
         }
@@ -171,7 +150,7 @@ public class Main {
             var searchDate = keyboard.nextInt();
             List<Author> aliveAuthors = authorRepository.findAuthorsInDBByYear(searchDate);
             if (!aliveAuthors.isEmpty()){
-                aliveAuthors.forEach(author -> showAuthorInfo(author));
+                aliveAuthors.forEach(System.out::println);
             }else {
                 System.out.println("Autores No Encontrados ");
             }
@@ -206,7 +185,7 @@ public class Main {
         List<Book> books = booksRepository.findBooksByLanguage(searchLanguage);
 
         if (!books.isEmpty()){
-            books.forEach(book -> showBookInfo(book));
+            books.forEach(System.out::println);
         }else {
             System.out.println("No Hay Libros Registrados En Este Idioma");
         }
